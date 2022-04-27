@@ -18,22 +18,34 @@ const HALF_LIFE_PERIOD = 5730;
  *
  */
 function dateSample(sampleActivity) {
-  const k = 0.693 / HALF_LIFE_PERIOD;
-  const t = Math.log(MODERN_ACTIVITY / sampleActivity) / k;
+  if (typeof sampleActivity !== 'string') {
+    return false;
+  }
+  const activSample = Number(sampleActivity);
 
-  console.log(Math.floor(t));
-  console.log(Math.round(t));
-  // return Math.floor(t);
+  const k = 0.693 / HALF_LIFE_PERIOD;
+  const t = Math.ceil(Math.log(MODERN_ACTIVITY / activSample) / k);
+
+  // console.log(activSample);
+  // console.log(t);
+  if (MODERN_ACTIVITY < activSample || isNaN(activSample) || activSample <= 0) {
+    return false;
+  }
+
+  return t;
 }
 
-// module.exports = {
-//   dateSample,
-// };
-console.log(dateSample('1')); //, 22387(или 22392
-console.log(dateSample('3')); //, 13305);
-console.log(dateSample('3.142')); //, 12923);
-console.log(dateSample('1.1')); //, 21599);
-console.log(dateSample('9.8888')); //, 3445);
-console.log(dateSample('9.59383373526808')); //, 3695);
-console.log(dateSample('9.122605776326203')); //, 4111);
-console.log(dateSample([3])); //, false);
+module.exports = {
+  dateSample,
+};
+// console.log(dateSample('1')); //, 22387(или 22392
+// console.log(dateSample('3')); //, 13305);
+// console.log(dateSample('3.142')); //, 12923);
+// console.log(dateSample('1.1')); //, 21599);
+// console.log(dateSample('9.8888')); //, 3445);
+// console.log(dateSample('9.59383373526808')); //, 3695);
+// console.log(dateSample('9.122605776326203')); //, 4111);
+// console.log(dateSample([3])); //, false);
+// console.log(dateSample('-5')); //, false);
+// console.log(dateSample('one')); //, false);
+// console.log(dateSample('-52892')); //, false);
