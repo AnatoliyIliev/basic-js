@@ -17,15 +17,13 @@ function createDreamTeam(members) {
   if (Array.isArray(members)) {
     return members
       .map(elem => {
-        if (typeof elem === 'string') return elem.trim();
+        if (typeof elem === 'string') return elem.trim().toUpperCase();
       })
-      .reduce((acc, member) => {
-        if (typeof member === 'string') return acc + member[0].toUpperCase();
-        else return acc;
-      }, '')
-      .split('')
       .sort()
-      .join('');
+      .reduce((acc, member) => {
+        if (typeof member === 'string') return acc + member[0];
+        else return acc;
+      }, '');
   } else return false;
 }
 
@@ -54,7 +52,7 @@ module.exports = {
 //     '  Jay Rosenberg',
 //   ]),
 // );
-// //, 'ADGJKMNPRSTW')
+// // //, 'ADGJKMNPRSTW')
 
 // console.log(
 //   createDreamTeam([
@@ -71,4 +69,4 @@ module.exports = {
 //     '  val_plumwood',
 //   ]),
 // );
-// //, 'BDETV');
+// // //, 'BDETV');
