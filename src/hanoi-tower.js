@@ -23,9 +23,9 @@ function calculateHanoi(disksNumber, turnsSpeed) {
   };
 }
 
-// module.exports = {
-//   calculateHanoi
-// };
+module.exports = {
+  calculateHanoi,
+};
 
 // console.log(calculateHanoi(5, 4074)); //, { turns: 31, seconds: 27 });
 // console.log(calculateHanoi(38, 4594)); //, { turns: 274877906943, seconds: 215402800390 });
